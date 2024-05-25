@@ -34,12 +34,12 @@ const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSid
     const search = serverSideProps.search;
 
     if (search) {
-      if (search === 'lost connection') {
-        window.alert('서버 오류');
-        router.reload();
+      // if (search === 'lost connection') {
+      //   window.alert('서버 오류');
+      //   router.reload();
 
-        return;
-      }
+      //   return;
+      // }
     }
   }, []);
 
