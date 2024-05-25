@@ -57,12 +57,33 @@
   transition: all 50ms;
 }
 
+.countText {
+  margin-top: 15px;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  gap: 10px;
+}
+.post {
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.6);
+}
+
 @media (hover: hover) {
   .searchInput:hover {
     border-color: rgba(0, 0, 0, 0.3);
   }
   .addPostButton:hover {
     opacity: 0.3;
+  }
+
+  .post:hover p {
+    text-decoration: underline;
+    color: rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -85,5 +106,14 @@
   }
   .addPostButton {
     margin-left: 10px;
+  }
+
+  .countText {
+    margin-top: 5px;
+  }
+
+  .posts {
+    margin-top: 25px;
+    gap: 5px;
   }
 }

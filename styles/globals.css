@@ -21,7 +21,7 @@
 }
 
 .lockMaxWidth {
-  max-width: 1200px;
+  max-width: 1000px;
 }
 
 .maxWidth {
@@ -37,7 +37,7 @@
   height: 100vh;
 }
 
-.header {
+.heading {
   font-family: 'font';
   font-size: 32px;
   color: rgba(0, 0, 0, 0.8);
@@ -45,6 +45,11 @@
 .text {
   font-family: 'font';
   font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.description {
+  font-family: 'font';
+  font-size: 14px;
   color: rgba(0, 0, 0, 0.8);
 }
 @font-face {
@@ -55,10 +60,13 @@
 }
 
 @media screen and (max-width: 768px) {
-  .header {
+  .heading {
     font-size: 24px;
   }
   .text {
     font-size: 12px;
+  }
+  .description {
+    font-size: 10px;
   }
 }
