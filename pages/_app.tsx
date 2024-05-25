@@ -7,8 +7,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>퍼퍼리 갤러리</title>
-        <meta name="description" content="퍼퍼리 갤러리 중 일부 이미지 저장소" />
-        <meta property="og:image" content="@/public/thumbnail.jpg" />
+        <meta property="og:description" content="퍼퍼리 갤러리 중 일부 이미지 저장소" />
+        {/* <meta property="og:image" content="@/public/thumbnail.jpg" /> */}
+        <meta property="og:image" content="https://www.google.com" />
       </Head>
       <Component {...pageProps} />
     </>
