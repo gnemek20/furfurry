@@ -1,7 +1,6 @@
 import style from '@/styles/Home.module.css'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import Image from 'next/image'
-import { useEffect } from 'react';
 
 const clearIcon = {
   src: require('@/public/icons/close.svg'),
