@@ -1,9 +1,13 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import Head from 'next/head'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
+      <Head>
+        <title>퍼퍼리 갤러리</title>
+      </Head>
       <Component {...pageProps} />
     </>
   );
