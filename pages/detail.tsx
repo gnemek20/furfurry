@@ -9,7 +9,7 @@ const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSid
   const [a, sa] = useState<string>('');
 
   useEffect(() => {
-    const posts = serverSideProps.posts;
+    const posts = serverSideProps.posts || [];
     
     posts.map((post: typeof serverSideProps.posts[0]) => {
       if (post.mimeType === 'image/jpeg') {
@@ -28,6 +28,19 @@ const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSid
         }
       }
     });
+
+    const target: HTMLCanvasElement = document.getElementById('asd') as HTMLCanvasElement;
+    const context = target.getContext('2d');
+    
+    let getImage = new Image();
+    // getImage.src = `https://drive.google.com/uc?export=view&id=${post['id']}`;
+    getImage.src = `https://drive.google.com/uc?export=view&id=1KKGsli_BanI1u35AZjFjA4azL-9YEg_g`;
+    // getImage.src = `https://drive.google.com/file/d/1KKGsli_BanI1u35AZjFjA4azL-9YEg_g/view?usp=drive_link`;
+    console.log(getImage)
+    getImage.onload = () => {
+      console.log('loaded')
+      context?.drawImage(getImage, 0, 0, target.width, target.height);
+    }
   }, [serverSideProps]);
 
   useEffect(() => {
