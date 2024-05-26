@@ -63,7 +63,7 @@ const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSid
         <Header />
         <div className={`${style.bodyContainer}`}>
           <div className={`${style.bodyRow} ${style.titleContainer}`}>
-            <h1 className={`heading`}>{ serverSideProps.name } - { content }</h1>
+            <h1 className={`heading`}>{ serverSideProps.name }</h1>
           </div>
           <div className={`${style.bodyRow} ${style.imageContainer}`}>
             {
@@ -71,6 +71,9 @@ const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSid
                 <img className={`${style.image}`} src={image} alt="image" key={index} />
               ))
             }
+          </div>
+          <div className={`${style.bodyRow} ${style.contentContainer}`}>
+            <p className={`text`}>{ content }</p>
           </div>
         </div>
         <div className={`${style.footerContainer}`}>

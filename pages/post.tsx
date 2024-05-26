@@ -1,4 +1,4 @@
-import { Header } from '@/components'
+import { Header, Loading } from '@/components'
 import style from '@/styles/post/Post.module.css'
 import { ChangeEvent, useState } from 'react'
 import Image from 'next/image'
@@ -13,7 +13,7 @@ const post = () => {
   const router = useRouter();
 
   const [files, setFiles] = useState<Array<File>>([]);
-  const [uploading, setUploading] = useState<boolean>(false);
+  const [uploading, setUploading] = useState<boolean | undefined>(undefined);
 
   const uploadFiles = (event: ChangeEvent<HTMLInputElement>) => {
     const uploadedFiles = event.target.files;
@@ -72,9 +72,9 @@ const post = () => {
     });
 
     if (res?.ok) {
-      setUploading(false);
       window.alert('업로드 성공');
       router.push('/');
+      setUploading(false);
     }
     else {
       setUploading(false);
@@ -85,6 +85,7 @@ const post = () => {
 
   return (
     <div className={`flex justifyCenter`}>
+      <Loading active={uploading} />
       <div className={`lockMaxWidth fullWidth fullHeight flex flexColumn`}>
         <Header />
         <div className={`${style.bodyContainer}`}>

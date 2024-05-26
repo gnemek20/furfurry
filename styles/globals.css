@@ -3,11 +3,19 @@
   margin: 0;
 }
 
+.none {
+  display: none !important;
+}
+
 .flex {
   display: flex;
 }
 .flexColumn {
   flex-direction: column;
+}
+
+.relative {
+  position: relative;
 }
 
 .spaceBetween {

@@ -1,0 +1,39 @@
+.fadeIn {
+  animation: fadeIn 200ms forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    display: flex;
+  }
+  100% {
+    opacity: 1;
+    display: flex;
+  }
+}
+
+.fadeOut {
+  animation: fadeOut 200ms forwards;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    display: flex;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.barRotate {
+  animation: barRotate 2500ms infinite;
+}
+@keyframes barRotate {
+  0% {
+    transform: rotate(25deg);
+  }
+  100% {
+    transform: rotate(385deg);
+  }
+}
