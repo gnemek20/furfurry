@@ -38,8 +38,10 @@ const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSid
     
     posts.map((post: typeof serverSideProps.posts[0]) => {
       if (post.mimeType.includes('image')) array.push(`https://lh3.google.com/u/0/d/${post['id']}=w1920-h1080-iv1`);
-      else if (post.mimeType.includes('text')) getContent(post['id']);
+      else if (post.name.includes('content')) getContent(post['id']);
     });
+
+    console.log(serverSideProps.content)
 
     setImages(array);
   }, [serverSideProps]);
@@ -90,7 +92,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const name = context.query['name'];
   const query = context.query['id'];
   let search = query;
-  let result;
+  let result: Array<Object> = [];
   
   const json = { postId: query }
 
@@ -113,7 +115,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       name: name,
       search: search,
-      posts: result || ''
+      posts: result || '',
     }
   }
 }
