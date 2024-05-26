@@ -2,13 +2,17 @@ import { Header, Search } from '@/components';
 import style from '@/styles/detail/Detail.module.css'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, KeyboardEvent } from 'react';
 
 const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
 
   const [images, setImages] = useState<Array<string>>([]);
+  const [comments, setComments] = useState<Array<string>>([]);
   const [content, setContent] = useState<string>('');
+
+  const [fileId, setFileId] = useState<string>('');
+  const [uploading, setUploading] = useState<boolean>(false);
 
   const getContent = async (id: string) => {
     const json = {
@@ -32,6 +36,61 @@ const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSid
     }
   }
 
+  const getComments = async (id: string) => {
+    setFileId(id);
+
+    const json = {
+      fileId: id
+    }
+
+    const res = await fetch('https://backfurry.vercel.app/getFile', {
+      mode: 'cors',
+      method: 'post',
+      body: JSON.stringify(json),
+      headers: { 'Content-Type': 'application/json' }
+    }).catch(() => {});
+
+    if (res?.ok) {
+      try {
+        await res.json().then(parser => { setComments(parser.data.replace(/\r/g, '').split('\n\n')) });
+      } catch (Exception) {
+        window.alert('서버 오류');
+        router.reload();
+      }
+    }
+  }
+
+  const updateComment = async (event?: KeyboardEvent<HTMLInputElement>) => {
+    if (event) {
+      if (event.key.toLowerCase() !== 'enter') return;
+    }
+
+    const target = document.getElementById('comment') as HTMLInputElement;
+    if (target.value.replace(/ /g, '').length === 0 || fileId.length === 0 || uploading) return;
+    setUploading(true);
+
+    const json = {
+      fileId: fileId,
+      comment: target.value
+    }
+
+    const res = await fetch('https://www.furfurry.site/updateComment', {
+      mode: 'cors',
+      method: 'post',
+      body: JSON.stringify(json),
+      headers: { 'Content-Type': 'application/json' }
+    }).catch(() => {
+      window.alert('서버 오류');
+      setUploading(false);
+    });
+
+    if (res?.ok) {
+      window.alert('댓글이 추가되었습니다.');
+      router.reload();
+      setUploading(false);
+    }
+  }
+
   useEffect(() => {
     const posts = serverSideProps.posts || [];
     let array = new Array();
@@ -39,9 +98,8 @@ const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSid
     posts.map((post: typeof serverSideProps.posts[0]) => {
       if (post.mimeType.includes('image')) array.push(`https://lh3.google.com/u/0/d/${post['id']}=w1920-h1080-iv1`);
       else if (post.name.includes('content')) getContent(post['id']);
+      else if (post.name.includes('comments')) getComments(post['id']);
     });
-
-    console.log(serverSideProps.content)
 
     setImages(array);
   }, [serverSideProps]);
@@ -79,7 +137,20 @@ const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSid
           </div>
         </div>
         <div className={`${style.footerContainer}`}>
-          <div className={`${style.footerRow}`}>
+          <div className={`${style.footerRow} ${style.commentInputContainer}`}>
+            <input id='comment' className={`${style.commentInput} text`} onKeyDown={(event) => updateComment(event)} type="text" placeholder='댓글을 입력하세요' />
+            <button className={`${style.commentSubmit} text`} onClick={() => updateComment()}>댓글 추가</button>
+          </div>
+          <div className={`${style.footerRow} ${style.commentContainer}`}>
+            {
+              comments?.map((comment, index) => (
+                <div className={`${style.commentRow}`} key={index}>
+                  <p className={`text`}>{ comment }</p>
+                </div>
+              ))
+            }
+          </div>
+          <div className={`${style.footerRow} ${style.searchContainer}`}>
             <Search />
           </div>
         </div>
