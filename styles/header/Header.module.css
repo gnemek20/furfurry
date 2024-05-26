@@ -1,0 +1,9 @@
+.headerContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  padding: 0px 20px;
+}
+.headerRow h1 {
+  cursor: pointer;
+}

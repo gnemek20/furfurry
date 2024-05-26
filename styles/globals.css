@@ -10,6 +10,9 @@
   flex-direction: column;
 }
 
+.spaceBetween {
+  justify-content: space-between;
+}
 .justifyCenter {
   justify-content: center;
 }

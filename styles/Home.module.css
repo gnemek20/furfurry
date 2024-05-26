@@ -20,43 +20,6 @@
   width: 100%;
 }
 
-.searchContainer {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 75%;
-  max-width: 75%;
-}
-.searchInput {
-  border: 2px solid rgba(0, 0, 0, 0.6);
-  border-radius: 2px;
-  padding: 14px 50px 10px 10px;
-  outline: none;
-  transition: all 50ms;
-}
-.clearIcon {
-  cursor: pointer;
-  filter: invert(0.3);
-  position: absolute;
-  transform: translateY(-50%);
-  top: 51%;
-  right: 15px;
-  object-fit: contain;
-  width: 2%;
-  height: auto;
-  padding: 10px;
-}
-.addPostButton {
-  cursor: pointer;
-  width: 100%;
-  border: 2px solid rgba(0, 0, 0, 0.6);
-  border-radius: 2px;
-  padding: 14px 10px 10px;
-  margin-left: 20px;
-  background-color: white;
-  transition: all 50ms;
-}
-
 .countText {
   margin-top: 15px;
 }
@@ -74,13 +37,6 @@
 }
 
 @media (hover: hover) {
-  .searchInput:hover {
-    border-color: rgba(0, 0, 0, 0.3);
-  }
-  .addPostButton:hover {
-    opacity: 0.3;
-  }
-
   .post:hover p {
     text-decoration: underline;
     color: rgba(0, 0, 0, 0.3);
@@ -90,22 +46,6 @@
 @media screen and (max-width: 768px) {
   .bodyContainer {
     padding: 25px 20px;
-  }
-
-  .searchContainer {
-    min-width: 60%;
-  }
-  .searchInput {
-    padding-right: 35px;
-  }
-  .clearIcon {
-    top: 50%;
-    right: 10px;
-    width: 5%;
-    padding: 5px;
-  }
-  .addPostButton {
-    margin-left: 10px;
   }
 
   .countText {
