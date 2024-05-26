@@ -68,7 +68,7 @@ const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSid
           <div className={`${style.bodyRow} ${style.imageContainer}`}>
             {
               images.map((image, index) => (
-                <img className={`${style.image}`} src={image} alt="image" key={index} />
+                <img className={`${style.image}`} src={image} alt="구글 로그인을 해주세요!" key={index} />
               ))
             }
           </div>

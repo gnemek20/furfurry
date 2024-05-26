@@ -69,7 +69,7 @@ const post = () => {
       mode: 'cors',
       method: 'post',
       body: json
-    });
+    }).catch(() => {window.alert('용량이 너무 커요')});
 
     if (res?.ok) {
       window.alert('업로드 성공');
