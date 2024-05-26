@@ -71,10 +71,11 @@ const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSid
 
     const json = {
       fileId: fileId,
+      comments: comments,
       comment: target.value
     }
 
-    const res = await fetch('https://www.furfurry.site/updateComment', {
+    const res = await fetch('https://backfurry.vercel.app/updateComment', {
       mode: 'cors',
       method: 'post',
       body: JSON.stringify(json),
@@ -138,15 +139,17 @@ const detail = (serverSideProps: InferGetServerSidePropsType<typeof getServerSid
         </div>
         <div className={`${style.footerContainer}`}>
           <div className={`${style.footerRow} ${style.commentInputContainer}`}>
-            <input id='comment' className={`${style.commentInput} text`} onKeyDown={(event) => updateComment(event)} type="text" placeholder='댓글을 입력하세요' />
+            <input id='comment' className={`${style.commentInput} text`} onKeyDown={(event) => updateComment(event)} type="text" placeholder='댓글을 입력하세요' autoComplete='off' />
             <button className={`${style.commentSubmit} text`} onClick={() => updateComment()}>댓글 추가</button>
           </div>
           <div className={`${style.footerRow} ${style.commentContainer}`}>
             {
               comments?.map((comment, index) => (
-                <div className={`${style.commentRow}`} key={index}>
-                  <p className={`text`}>{ comment }</p>
-                </div>
+                comment.length !== 0 && (
+                  <div className={`${style.commentRow}`} key={index}>
+                    <p className={`text`}>{ comment }</p>
+                  </div>
+                )
               ))
             }
           </div>

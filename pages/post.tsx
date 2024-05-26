@@ -90,14 +90,14 @@ const post = () => {
         <Header />
         <div className={`${style.bodyContainer}`}>
           <div className={`${style.bodyRow}`}>
-            <input id="title" className={`text`} type="text" placeholder="제목" spellCheck={false} />
+            <input id="title" className={`text`} type="text" placeholder="제목" spellCheck={false} autoComplete='off' />
           </div>
           <div className={`${style.bodyRow}`}>
             <textarea id="content" className={`text`} rows={10} placeholder="설명" spellCheck={false} />
           </div>
           <div className={`${style.bodyRow} spaceBetween`}>
             <div className={`flex maxWidth`}>
-              <input id="files" onChange={(event) => uploadFiles(event)} type="file" accept="image/*" multiple />
+              <input id="files" onChange={(event) => uploadFiles(event)} type="file" accept="image/*" multiple autoComplete='off' />
               <label className={`text`} htmlFor="files">파일 추가</label>
             </div>
             <div className={`flex maxWidth`}>
